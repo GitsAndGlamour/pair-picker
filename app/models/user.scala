@@ -8,9 +8,9 @@ case class User( id: String,
                  anchor: Boolean,
                  active: Boolean)
 
-object JsonFormats {
+object userJsonFormats {
   import play.api.libs.json.Json
 
   // Generates Writes and Reads for Feed and User thanks to Json Macros
   implicit val userFormat = Json.format[User]
-}
+  }

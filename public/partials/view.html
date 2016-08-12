@@ -9,17 +9,19 @@
         <div>
             <div class="form-group">
                 <h3>
-                    Users
-                    <a ng-href="/#/users/create" class="btn btn-primary pull-right" id="btn_user_create">Add User</a>
+                    Summary
                 </h3>
                 <hr>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Users...">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Users and Stories...">
                 <hr>
             </div>
 
-
+            <h4>
+              Users
+            <a ng-href="/#/users/create" class="btn btn-primary pull-right" id="btn_user_create">Add User</a>
+          </h4>
             <table id="user_list" class="table table-striped">
                 <thead>
                 <tr>
@@ -51,6 +53,41 @@
                 <tr ng-hide="uc.users.length">
                     <td colspan="5">
                         <p class="text-center">No Users Found</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <h4>Stories
+              <a ng-href="/#/stories/create" class="btn btn-warning pull-right" id="btn_story_create">Add Story</a>
+            </h4>
+            <table id="story_list" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Points</th>
+                    <th>Pair</th>
+                    <th>Active</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="stry in uc.stories | filter:searchText">
+                    <td>
+                        {{ stry.storyName }} <span><i class="glyphicon" ng-class="{'glyphicon-link': usr.anchor, 'glyphicon-send': !usr.anchor}"></i></span>
+                    </td>
+                    <td>
+                        {{ stry.anchor }} <i class="glyphicon glyphicon-link"></i> {{ stry.floater }}
+                    </td>
+                    <td>
+                        <i class="pull-left glyphicon" ng-class="{'glyphicon-eye-open': stry.active, 'glyphicon-eye-close': !stry.active}"></i>
+                    </td>
+                    <td>
+                        <a ng-href="/#/stories/edit/{{stry.storyName}}" class="btn btn-success pull-right" id="btn_story_update">Edit Story</a>
+                    </td>
+                </tr>
+                <tr ng-hide="uc.stories.length">
+                    <td colspan="5">
+                        <p class="text-center">No Stories Found</p>
                     </td>
                 </tr>
                 </tbody>

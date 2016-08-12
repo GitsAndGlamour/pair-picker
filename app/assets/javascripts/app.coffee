@@ -16,13 +16,19 @@ angular.module('myApp.routeConfig', ['ngRoute'])
     .config(['$routeProvider', ($routeProvider) ->
         $routeProvider
             .when('/', {
-                templateUrl: '/assets/partials/users/view.html'
+                templateUrl: '/assets/partials/view.html'
             })
             .when('/users/create', {
                 templateUrl: '/assets/partials/users/create.html'
             })
             .when('/users/edit/:firstName/:lastName', {
-                templateUrl: '/assets/partials/users/update.html'
+                templateUrl: '/assets/partials/stories/update.html'
+            })
+            .when('/stories/create', {
+                templateUrl: '/assets/partials/stories/create.html'
+            })
+            .when('/stories/edit/:storyName', {
+                templateUrl: '/assets/partials/stories/update.html'
             })
             .otherwise({redirectTo: '/'})])
     .config(['$locationProvider', ($locationProvider) ->
