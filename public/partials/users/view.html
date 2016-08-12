@@ -2,8 +2,8 @@
 
     <div ng-controller="UserCtrl as uc">
         <div class="jumbotron">
-            <h2>A Modern Web Template</h2>
-            <p class="pull-right">... a UI created using AngularJS and Bootstrap to make it easier to manage paired proramming</p>
+            <h2>Pair Picker</h2>
+            <p class="pull-right">... a UI created to make it easier to manage paired proramming</p>
         </div>
 
         <div>
@@ -42,7 +42,7 @@
                         {{ usr.storyName }}
                     </td>
                     <td>
-                        <i class="pull-left glyphicon" ng-class="{'glyphicon-eye-open': usr.active, 'glyphicon-eye-closed': !usr.active}"></i>
+                        <i class="pull-left glyphicon" ng-class="{'glyphicon-eye-open': usr.active, 'glyphicon-eye-close': !usr.active}"></i>
                     </td>
                     <td>
                         <a ng-href="/#/users/edit/{{usr.firstName}}/{{usr.lastName}}" class="btn btn-success pull-right" id="btn_user_update">Edit User</a>
