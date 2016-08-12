@@ -5,8 +5,6 @@ case class Story(epic: String,
                  storyName: String,
                  anchor: String,
                  floater: String,
-                 createdAt: String,
-                 updatedAt: String,
                  active: Boolean,
                  resolved: Boolean)
 object storyJsonFormats {

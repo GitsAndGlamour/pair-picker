@@ -73,7 +73,7 @@
                 <tbody>
                 <tr ng-repeat="stry in uc.stories | filter:searchText">
                     <td>
-                        {{ stry.storyName }} <span><i class="glyphicon" ng-class="{'glyphicon-link': usr.anchor, 'glyphicon-send': !usr.anchor}"></i></span>
+                        {{ stry.storyName }} ({{ stry.storyType }} - {{ stry.epic }} Epic) <span><i class="glyphicon" ng-class="{'glyphicon-link': usr.anchor, 'glyphicon-send': !usr.anchor}"></i></span>
                     </td>
                     <td>
                         {{ stry.anchor }} <i class="glyphicon glyphicon-link"></i> {{ stry.floater }}

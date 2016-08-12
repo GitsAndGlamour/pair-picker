@@ -10,6 +10,7 @@ class CreateStoryCtrl
         @story.active = true
         @story.anchor = "No anchor"
         @story.floater = "No floater"
+        @story.resolved = false
         @StoryService.createStory(@story)
         .then(
             (data) =>

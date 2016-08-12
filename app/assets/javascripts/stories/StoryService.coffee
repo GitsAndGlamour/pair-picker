@@ -37,11 +37,11 @@ class StoryService
             )
         deferred.promise
 
-    updateStory: (firstName, lastName, story) ->
+    updateStory: (storyName, story) ->
       @$log.debug "updateStory #{angular.toJson(story, true)}"
       deferred = @$q.defer()
 
-      @$http.put("/story/#{firstName}/#{lastName}", story)
+      @$http.put("/story/#{storyName}", story)
       .success((data, status, headers) =>
               @$log.info("Successfully updated Story - status #{status}")
               deferred.resolve(data)
