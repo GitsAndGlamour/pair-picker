@@ -1,6 +1,6 @@
 
 
-    <div ng-controller="UserCtrl as uc">
+    <div>
         <div class="jumbotron">
             <h2>Pair Picker</h2>
             <p class="pull-right">... a UI created to make it easier to manage paired proramming</p>
@@ -22,6 +22,8 @@
               Users
             <a ng-href="/#/users/create" class="btn btn-primary pull-right" id="btn_user_create">Add User</a>
           </h4>
+          <div ng-controller="UserCtrl as uc">
+            <div ng-controller="StoryCtrl as sc">
             <table id="user_list" class="table table-striped">
                 <thead>
                 <tr>
@@ -38,10 +40,10 @@
                         {{ usr.firstName }} {{ usr.lastName }} <span><i class="glyphicon" ng-class="{'glyphicon-link': usr.anchor, 'glyphicon-send': !usr.anchor}"></i></span>
                     </td>
                     <td>
-                        {{ usr.partnerName }}
+                        {{ usr.partnerName }} <span ng-if="usr.partnerName == 'No partner'" class="label label-success">Add</span><span ng-if="usr.partnerName != 'No partner'" class="label label-warning">Change</span>
                     </td>
                     <td>
-                        {{ usr.storyName }}
+                        {{ usr.storyName }} <span ng-if="usr.storyName == 'No story linked'" class="label label-success">Add</span><span ng-if="usr.storyName != 'No story linked'" class="label label-warning">Change</span>
                     </td>
                     <td>
                         <i class="pull-left glyphicon" ng-class="{'glyphicon-eye-open': usr.active, 'glyphicon-eye-close': !usr.active}"></i>
@@ -64,19 +66,18 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Points</th>
                     <th>Pair</th>
                     <th>Active</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="stry in uc.stories | filter:searchText">
+                <tr ng-repeat="stry in sc.stories | filter:searchText">
                     <td>
-                        {{ stry.storyName }} ({{ stry.storyType }} - {{ stry.epic }} Epic) <span><i class="glyphicon" ng-class="{'glyphicon-link': usr.anchor, 'glyphicon-send': !usr.anchor}"></i></span>
+                        {{ stry.storyName }} ({{ stry.storyType }} - {{ stry.epic }} Epic) <span class="badge">{{ stry.points }}</span>
                     </td>
                     <td>
-                        {{ stry.anchor }} <i class="glyphicon glyphicon-link"></i> {{ stry.floater }}
+                        {{ stry.anchor }} <i class="glyphicon glyphicon-link"></i> {{ stry.floater }} <span class="label label-info">Change</span>
                     </td>
                     <td>
                         <i class="pull-left glyphicon" ng-class="{'glyphicon-eye-open': stry.active, 'glyphicon-eye-close': !stry.active}"></i>
@@ -85,7 +86,7 @@
                         <a ng-href="/#/stories/edit/{{stry.storyName}}" class="btn btn-success pull-right" id="btn_story_update">Edit Story</a>
                     </td>
                 </tr>
-                <tr ng-hide="uc.stories.length">
+                <tr ng-hide="sc.stories.length">
                     <td colspan="5">
                         <p class="text-center">No Stories Found</p>
                     </td>
@@ -98,13 +99,17 @@
             </h3>
             <hr>
             <accordion>
-                <accordion-group is-open="status.open">
+                <accordion-group is-open="statsc.open">
                     <accordion-heading>
-                        Json Data <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                        Json Data <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': statsc.open, 'glyphicon-chevron-right': !statsc.open}"></i>
                     </accordion-heading>
+                    <h5>Users</h5>
                     <pre>{{ uc.users | json }}</pre>
+                    <h5>Stories</h5>
+                    <pre>{{ sc.stories | json }}</pre>
                 </accordion-group>
             </accordion>
+          </div>
         </div>
 
     </div>

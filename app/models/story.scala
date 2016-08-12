@@ -2,6 +2,7 @@ package models
 
 case class Story(epic: String,
                  storyType: String,
+                 points: Int,
                  storyName: String,
                  anchor: String,
                  floater: String,
@@ -10,7 +11,6 @@ case class Story(epic: String,
 object storyJsonFormats {
  import play.api.libs.json.Json
 
- // Generates Writes and Reads for Feed and User thanks to Json Macros
- implicit val userFormat = Json.format[User]
+ // Generates Writes and Reads for Feed and Story thanks to Json Macros
  implicit val storyFormat = Json.format[Story]
 }

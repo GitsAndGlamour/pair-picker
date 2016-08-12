@@ -1,5 +1,5 @@
 <div ng-controller="UpdateUserCtrl as uuc">
-    <h1>Create User</h1>
+    <h1>Update User</h1>
 
     <form id="UpdateUserForm" name="UpdateUserForm" class="form-horizontal" role="form"
           ng-submit="uuc.updateUser()">
@@ -24,6 +24,16 @@
         </div>
 
         <div class="form-group">
+            <label id="lbl_storyName" for="storyName" class="col-sm-4 control-label">Story</label>
+
+            <div ng-controller="StoryCtrl as us" class="col-sm-offset-2">
+                <select ng-model="uuc.user.storyName">
+                  <option ng-repeat="stry in us.stories | filter:searchText">{{ stry.storyName }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label id="lbl_anchor" for="anchor" class="col-sm-4 control-label"
                    is-required="CreateUserForm.anchor">Anchor</label>
 
@@ -40,6 +50,16 @@
             <div class="col-sm-4">
                 <input type="checkbox" class="form-control" name="active" id="active"
                        ng-model="uuc.user.active">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_partnerName" for="partnerName" class="col-sm-4 control-label">Partner</label>
+
+            <div ng-controller="UserCtrl as uc" class="col-sm-offset-2">
+                <select ng-model="uuc.user.partnerName">
+                  <option ng-repeat="usr in uc.users | filter:searchText">{{ usr.firstName }} {{ usr.lastName }}</option>
+                </select>
             </div>
         </div>
 

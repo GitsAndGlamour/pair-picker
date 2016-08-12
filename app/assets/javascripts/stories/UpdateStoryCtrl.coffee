@@ -2,36 +2,36 @@ class UpdateStoryCtrl
 
   constructor: (@$log, @$location, @$routeParams, @StoryService) ->
       @$log.debug "constructing UpdateStoryController"
-      @Story = {}
-      @findStories()
+      @story = {}
+      @findStory()
 
   updateStory: () ->
       @$log.debug "updateStory()"
-      # @Story.active = true
-      @StoryService.updateStory(@$routeParams.storyName,  @Story)
+      # @story.active = true
+      @StoryService.updateStory(@$routeParams.storyName, @story)
       .then(
           (data) =>
             @$log.debug "Promise returned #{data} Story"
-            @Story = data
+            @story = data
             @$location.path("/")
         ,
         (error) =>
             @$log.error "Unable to update Story: #{error}"
       )
 
-  findStories: () ->
+  findStory: () ->
       # route params must be same name as provided in routing url in app.coffee
       storyName = @$routeParams.storyName
-      @$log.debug "findStories route params: #{storyName}"
+      @$log.debug "findStory route params: #{storyName}"
 
       @StoryService.listStories()
       .then(
         (data) =>
           @$log.debug "Promise returned #{data.length} Stories"
 
-          # find a Story with the name of firstName and lastName
+          # find a story with the name of storyName
           # as filter returns an array, get the first object in it, and return it
-          @Story = (data.filter (Story) -> Story.storyName is storyName)[0]
+          @story = (data.filter (story) -> story.storyName is storyName)[0]
       ,
         (error) =>
           @$log.error "Unable to get Stories: #{error}"

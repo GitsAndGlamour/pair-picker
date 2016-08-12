@@ -1,8 +1,8 @@
 <div ng-controller="CreateStoryCtrl as csc">
-    <h1>Create User</h1>
+    <h1>Create Story</h1>
 
-    <form id="CreateUserForm" name="CreateUserForm" class="form-horizontal col-md-8 col-md-offset-2" role="form"
-          ng-submit="csc.createUser()">
+    <form id="CreateStoryForm" name="CreateStoryForm" class="form-horizontal col-md-8 col-md-offset-2" role="form"
+          ng-submit="csc.createStory()">
         <legend class="sm-col-12">Basic Information</legend>
 
         <div class="form-group">
@@ -25,7 +25,7 @@
         <div class="form-group">
           <label id="lbl_storyType" for="storyType" class="col-sm-4 control-label">Type</label>
 
-          <select class="col-sm-6 col-sm-offset-1" ng-model="csc.story.type">
+          <select class="col-sm-6 col-sm-offset-1" ng-model="csc.story.storyType">
             <option>EFS</option>
             <option>DN</option>
             <option>Microservice</option>
@@ -34,7 +34,7 @@
 
         <div class="form-group">
             <label id="lbl_epic" for="epic" class="col-sm-4 control-label"
-                   is-required="CreateUserForm.epic">Epic</label>
+                   is-required="CreateStoryForm.epic">Epic</label>
 
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="epic" id="epic"

@@ -1,22 +1,22 @@
 
-class UserCtrl
+class StoryCtrl
 
-    constructor: (@$log, @UserService) ->
-        @$log.debug "constructing UserController"
-        @users = []
-        @getAllUsers()
+    constructor: (@$log, @StoryService) ->
+        @$log.debug "constructing StoryController"
+        @stories = []
+        @getAllStories()
 
-    getAllUsers: () ->
-        @$log.debug "getAllUsers()"
+    getAllStories: () ->
+        @$log.debug "getAllStories()"
 
-        @UserService.listUsers()
+        @StoryService.listStories()
         .then(
             (data) =>
-                @$log.debug "Promise returned #{data.length} Users"
-                @users = data
+                @$log.debug "Promise returned #{data.length} Stories"
+                @stories = data
             ,
             (error) =>
-                @$log.error "Unable to get Users: #{error}"
+                @$log.error "Unable to get Stories: #{error}"
             )
 
-controllersModule.controller('UserCtrl', ['$log', 'UserService', UserCtrl])
+controllersModule.controller('StoryCtrl', ['$log', 'StoryService', StoryCtrl])

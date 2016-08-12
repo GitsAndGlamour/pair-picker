@@ -22,7 +22,7 @@ angular.module('myApp.routeConfig', ['ngRoute'])
                 templateUrl: '/assets/partials/users/create.html'
             })
             .when('/users/edit/:firstName/:lastName', {
-                templateUrl: '/assets/partials/stories/update.html'
+                templateUrl: '/assets/partials/users/update.html'
             })
             .when('/stories/create', {
                 templateUrl: '/assets/partials/stories/create.html'

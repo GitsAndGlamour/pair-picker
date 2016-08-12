@@ -1,55 +1,100 @@
-<div ng-controller="UpdateUserCtrl as uuc">
-    <h1>Create User</h1>
+<div ng-controller="UpdateStoryCtrl as uus">
+    <h1>Update Story</h1>
 
-    <form id="UpdateUserForm" name="UpdateUserForm" class="form-horizontal" role="form"
-          ng-submit="uuc.updateUser()">
+    <form id="UpdateStoryForm" name="UpdateStoryForm" class="form-horizontal" role="form"
+          ng-submit="uus.updateStory()">
         <legend class="sm-col-12">Basic Information</legend>
 
         <div class="form-group">
-            <label id="lbl_firstName" for="firstName" class="col-sm-4 control-label">First Name</label>
+            <label id="lbl_storyName" for="storyName" class="col-sm-4 control-label">Story Name</label>
 
             <div class="col-sm-8">
-                <input type="text" class="form-control" name="firstName" id="firstName" placeholder=""
-                       ng-model="uuc.user.firstName">
+                <input type="text" class="form-control" name="storyName" id="storyName" placeholder=""
+                       ng-model="uus.story.storyName">
             </div>
         </div>
 
         <div class="form-group">
-            <label id="lbl_lastName" for="lastName" class="col-sm-4 control-label">Last Name</label>
+            <label id="lbl_points" for="points" class="col-sm-4 control-label">Points</label>
 
             <div class="col-sm-8">
-                <input type="text" class="form-control" name="lastName" id="lastName" placeholder=""
-                       ng-model="uuc.user.lastName">
+                <input type="number" class="form-control" name="points" id="points" placeholder=""
+                       ng-model="uus.story.points">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+          <label id="lbl_storyType" for="storyType" class="col-sm-4 control-label">Type</label>
+
+          <select class="col-sm-6 col-sm-offset-1" ng-model="csc.story.storyType">
+            <option>EFS</option>
+            <option>DN</option>
+            <option>Microservice</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_epic" for="epic" class="col-sm-4 control-label"
+                   is-required="CreateStoryForm.epic">Epic</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="epic" id="epic"
+                       ng-model="csc.story.epic">
             </div>
         </div>
 
         <div class="form-group">
-            <label id="lbl_anchor" for="anchor" class="col-sm-4 control-label"
-                   is-required="CreateUserForm.anchor">Anchor</label>
+            <label id="lbl_anchor" for="anchor" class="col-sm-4 control-label">Anchor</label>
 
-            <div class="col-sm-4">
-                <input type="checkbox" class="form-control" name="anchor" id="anchor"
-                       ng-model="uuc.user.anchor">
+            <div ng-controller="UserCtrl as uc" class="col-sm-offset-2">
+                <select ng-model="uus.story.anchor">
+                  <option>No anchor</option>
+                  <option ng-repeat="usr in uc.users | filter:searchText">{{ usr.firstName }} {{ usr.lastName }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_floater" for="floater" class="col-sm-4 control-label">Floater</label>
+
+            <div ng-controller="UserCtrl as uc" class="col-sm-offset-2">
+                <select ng-model="uus.story.floater">
+                  <option>No floater</option>
+                  <option ng-repeat="usr in uc.users | filter:searchText">{{ usr.firstName }} {{ usr.lastName }}</option>
+                </select>
             </div>
         </div>
 
         <div class="form-group">
             <label id="lbl_active" for="active" class="col-sm-4 control-label"
-                   is-required="CreateUserForm.active">Active</label>
+                   is-required="CreateStoryForm.active">Active</label>
 
             <div class="col-sm-4">
                 <input type="checkbox" class="form-control" name="active" id="active"
-                       ng-model="uuc.user.active">
+                       ng-model="uus.story.active">
             </div>
         </div>
 
-        <pre>{{ uuc.user | json }}</pre>
+        <div class="form-group">
+            <label id="lbl_resolved" for="resolved" class="col-sm-4 control-label"
+                   is-required="CreateStoryForm.resolved">Resolved</label>
+
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-control" name="resolved" id="resolved"
+                       ng-model="uus.story.resolved">
+            </div>
+        </div>
+
+
+
+        <pre>{{ uus.story | json }}</pre>
 
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8 text-right">
                 <a ng-href="/#/" id="btn_cancel" class="btn btn-warning">Cancel</a>
 
-                <button type="submit" class="btn btn-success" id="btn_create">Update User</button>
+                <button type="submit" class="btn btn-success" id="btn_create">Update Story</button>
             </div>
         </div>
 
